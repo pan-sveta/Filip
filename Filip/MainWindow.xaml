@@ -1,0 +1,29 @@
+﻿<Window x:Class="Filip.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Filip"
+        mc:Ignorable="d"
+        Title="Filip" Height="800" Width="1000" MinHeight="800" MinWidth="1000">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="630"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="630"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <ListBox x:Name="ListboxCommands" HorizontalAlignment="Left" Height="100" Margin="10,10,0,0" VerticalAlignment="Top" Width="300" Grid.Row="1"/>
+        <Canvas x:Name="CanvasSimulation" HorizontalAlignment="Left" Height="600" Margin="10,10,0,0" VerticalAlignment="Top" Width="600" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
+        <RichTextBox x:Name="TextBoxEditor" Grid.Column="1" HorizontalAlignment="Left" Height="600" Margin="10,10,-352,0" VerticalAlignment="Top" Width="342" AcceptsTab="True">
+            <FlowDocument>
+                <Paragraph>
+                    <Run Text="RichTextBox"/>
+                </Paragraph>
+            </FlowDocument>
+        </RichTextBox>
+
+    </Grid>
+</Window>
