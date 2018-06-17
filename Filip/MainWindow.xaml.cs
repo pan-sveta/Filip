@@ -20,9 +20,23 @@ namespace Filip
     /// </summary>
     public partial class MainWindow : Window
     {
+        Controller controller;
+
         public MainWindow()
         {
             InitializeComponent();
+
+            controller = new Controller(CanvasSimulation);
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            controller.filipus.Step();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            controller.filipus.Turn();
         }
     }
 }

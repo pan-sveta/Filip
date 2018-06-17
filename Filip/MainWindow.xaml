@@ -16,7 +16,11 @@
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
         <ListBox x:Name="ListboxCommands" HorizontalAlignment="Left" Height="100" Margin="10,10,0,0" VerticalAlignment="Top" Width="300" Grid.Row="1"/>
-        <Canvas x:Name="CanvasSimulation" HorizontalAlignment="Left" Height="600" Margin="10,10,0,0" VerticalAlignment="Top" Width="600" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
+        <Canvas x:Name="CanvasSimulation" HorizontalAlignment="Left" Height="600" Margin="10,10,0,0" VerticalAlignment="Top" Width="600" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+            <Canvas.LayoutTransform>
+                <ScaleTransform ScaleX="1" ScaleY="-1" />
+            </Canvas.LayoutTransform>
+        </Canvas>
         <RichTextBox x:Name="TextBoxEditor" Grid.Column="1" HorizontalAlignment="Left" Height="600" Margin="10,10,-352,0" VerticalAlignment="Top" Width="342" AcceptsTab="True">
             <FlowDocument>
                 <Paragraph>
@@ -24,6 +28,8 @@
                 </Paragraph>
             </FlowDocument>
         </RichTextBox>
+        <Button Content="Step" Grid.Column="1" HorizontalAlignment="Left" Margin="173,66,-241,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Click="Button_Click" Height="55"/>
+        <Button Content="Turn" Grid.Column="1" HorizontalAlignment="Left" Margin="253,66,-323,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Height="55" Click="Button_Click_1"/>
 
     </Grid>
 </Window>
