@@ -20,23 +20,54 @@ namespace Filip
     /// </summary>
     public partial class MainWindow : Window
     {
-        Controller controller;
+
 
         public MainWindow()
         {
             InitializeComponent();
 
-            controller = new Controller(CanvasSimulation);
+            Controller.SetCanvas(CanvasSimulation);
+            RefreshCommandsListBox();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            controller.filipus.Step();
+            Controller.FilipRobot.Step();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            controller.filipus.Turn();
+            Controller.FilipRobot.Turn();
+        }
+
+        private void ButtonCommandSave_Click(object sender, RoutedEventArgs e)
+        {
+            CommandsManager.AddCommand(TextBoxEditor.Text.ToUpper());
+            RefreshCommandsListBox();
+        }
+
+        private void ButtonCommandExecute_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void RefreshCommandsListBox()
+        {
+            ListBoxCommands.Items.Clear();
+
+            foreach (string item in CommandsManager.GetAllCommandsNames())
+            {
+                ListBoxCommands.Items.Add(item);
+            }
+        }
+
+        private void ListBoxCommands_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (ListBoxCommands.SelectedItem != null)
+            {
+                string commandName = ListBoxCommands.SelectedItem.ToString();
+                CommandsManager.ExecuteCommand(commandName);
+            }
         }
     }
 }

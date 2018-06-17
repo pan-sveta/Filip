@@ -9,7 +9,7 @@ using System.Windows.Media.Imaging;
 
 namespace Filip
 {
-    class Filipus
+    class FilipRobot
     {
         private int x;
         public int X
@@ -31,12 +31,12 @@ namespace Filip
                 y = value;
             }
         }
-        public Direction direction { get; private set; }
-        public Rectangle rectangle { get; private set; }
+        public Direction Direction { get; private set; }
+        public Rectangle Rectangle { get; private set; }
 
-        public Filipus()
+        public FilipRobot()
         {
-            rectangle = new Rectangle
+            Rectangle = new Rectangle
             {
                 Width = 20,
                 Height = 20,
@@ -46,22 +46,22 @@ namespace Filip
 
             X = 0;
             Y = 0;
-            direction = Direction.V;
+            Direction = Direction.V;
         }
 
         private void CorrectRectagle(int Xcor, int Ycor)
         {
-            rectangle.Margin = new System.Windows.Thickness(Xcor*60 + 20, Ycor * 60 + 20, 0, 0);
+            Rectangle.Margin = new System.Windows.Thickness(Xcor*60 + 20, Ycor * 60 + 20, 0, 0);
         }
 
         public void Step()
         {
-            switch (direction)
+            switch (Direction)
             {
                 case Direction.S:
                     if (Y + 1 > 9)
                     {
-                        throw new CannotMakeStepExeption();
+                        throw new Exception("Nelze udělat krok. V čele je zeď.");
                     }
                     else
                     {
@@ -71,7 +71,7 @@ namespace Filip
                 case Direction.V:
                     if (X + 1 > 9)
                     {
-                        throw new CannotMakeStepExeption();
+                        throw new Exception("Nelze udělat krok. V čele je zeď.");
                     }
                     else
                     {
@@ -81,7 +81,7 @@ namespace Filip
                 case Direction.J:
                     if (Y - 1 < 0)
                     {
-                        throw new CannotMakeStepExeption();
+                        throw new Exception("Nelze udělat krok. V čele je zeď.");
                     }
                     else
                     {
@@ -91,7 +91,7 @@ namespace Filip
                 case Direction.Z:
                     if (X - 1 < 0)
                     {
-                        throw new CannotMakeStepExeption();
+                        throw new Exception("Nelze udělat krok. V čele je zeď.");
                     }
                     else
                     {
@@ -103,40 +103,23 @@ namespace Filip
 
         public void Turn()
         {
-            switch (direction)
+            switch (Direction)
             {
                 case Direction.S:
-                    direction = Direction.V;
-                    break;
-                case Direction.V:
-                    direction = Direction.J;
-                    break;
-                case Direction.J:
-                    direction = Direction.Z;
+                    Direction = Direction.Z;
                     break;
                 case Direction.Z:
-                    direction = Direction.S;
+                    Direction = Direction.J;
+                    break;
+                case Direction.J:
+                    Direction = Direction.V;
+                    break;
+                case Direction.V:
+                    Direction = Direction.S;
                     break;
             }
         }
     }
-
-    public class CannotMakeStepExeption : Exception
-    {
-        public CannotMakeStepExeption()
-        {
-        }
-        public CannotMakeStepExeption(string message)
-        : base(message)
-        {
-        }
-
-        public CannotMakeStepExeption(string message, Exception inner)
-            : base(message, inner)
-        {
-        }
-    }
-
 
     public enum Direction
     {

@@ -8,33 +8,29 @@ using System.Windows.Shapes;
 
 namespace Filip
 {
-    class Controller
+    static class Controller
     {
-        public Filipus filipus { get; private set; }
+        public static FilipRobot FilipRobot;
+        static Canvas Canvas;
+        static FieldMap fieldMap;
 
-        Canvas canvas;
-        FieldMap fieldMap;
-
-        public Controller(Canvas canvas)
+        static Controller()
         {
-            this.canvas = canvas;
-
-            Inicialization();
+            FilipRobot = new FilipRobot();
         }
 
-        private void Inicialization()
+        public static void SetCanvas(Canvas canvas)
         {
-            filipus = new Filipus();
-            canvas.Children.Add(filipus.rectangle);
-            Canvas.SetZIndex(filipus.rectangle, 99);
-            
+            Canvas = canvas;
+            Canvas.Children.Add(FilipRobot.Rectangle);
+            Canvas.SetZIndex(FilipRobot.Rectangle, 99);
 
             fieldMap = new FieldMap();
             List<Rectangle> recList = fieldMap.GetRectangles();
 
             foreach (Rectangle rectangle in recList)
             {
-                canvas.Children.Add(rectangle);
+                Canvas.Children.Add(rectangle);
             }
         }
     }
