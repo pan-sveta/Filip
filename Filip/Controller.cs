@@ -12,7 +12,7 @@ namespace Filip
     {
         public static FilipRobot FilipRobot;
         static Canvas Canvas;
-        static FieldMap fieldMap;
+        public static FieldMap FieldMap;
 
         static Controller()
         {
@@ -25,8 +25,8 @@ namespace Filip
             Canvas.Children.Add(FilipRobot.Rectangle);
             Canvas.SetZIndex(FilipRobot.Rectangle, 99);
 
-            fieldMap = new FieldMap();
-            List<Rectangle> recList = fieldMap.GetRectangles();
+            FieldMap = new FieldMap();
+            List<Rectangle> recList = FieldMap.GetRectangles();
 
             foreach (Rectangle rectangle in recList)
             {

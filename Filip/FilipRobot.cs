@@ -51,7 +51,7 @@ namespace Filip
 
         private void CorrectRectagle(int Xcor, int Ycor)
         {
-            Rectangle.Margin = new System.Windows.Thickness(Xcor*60 + 20, Ycor * 60 + 20, 0, 0);
+            Rectangle.Margin = new System.Windows.Thickness(Xcor * 60 + 20, Ycor * 60 + 20, 0, 0);
         }
 
         public void Step()
@@ -60,6 +60,10 @@ namespace Filip
             {
                 case Direction.S:
                     if (Y + 1 > 9)
+                    {
+                        throw new Exception("Nelze udělat krok. V čele je zeď.");
+                    }
+                    else if (Controller.FieldMap.IsWall(X, Y + 1))
                     {
                         throw new Exception("Nelze udělat krok. V čele je zeď.");
                     }
@@ -73,6 +77,10 @@ namespace Filip
                     {
                         throw new Exception("Nelze udělat krok. V čele je zeď.");
                     }
+                    else if (Controller.FieldMap.IsWall(X + 1, Y))
+                    {
+                        throw new Exception("Nelze udělat krok. V čele je zeď.");
+                    }
                     else
                     {
                         X++;
@@ -83,6 +91,10 @@ namespace Filip
                     {
                         throw new Exception("Nelze udělat krok. V čele je zeď.");
                     }
+                    else if (Controller.FieldMap.IsWall(X, Y - 1))
+                    {
+                        throw new Exception("Nelze udělat krok. V čele je zeď.");
+                    }
                     else
                     {
                         Y--;
@@ -90,6 +102,10 @@ namespace Filip
                     break;
                 case Direction.Z:
                     if (X - 1 < 0)
+                    {
+                        throw new Exception("Nelze udělat krok. V čele je zeď.");
+                    }
+                    else if (Controller.FieldMap.IsWall(X - 1, Y))
                     {
                         throw new Exception("Nelze udělat krok. V čele je zeď.");
                     }

@@ -34,5 +34,16 @@ namespace Filip
             return recList;
         }
 
+        public bool IsWall(int x, int y)
+        {
+            if (fieldMapArray[x,y].FieldType==FieldType.Wall)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
